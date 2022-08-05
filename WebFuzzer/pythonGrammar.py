@@ -18,6 +18,7 @@ from fuzzingbook.MutationFuzzer import MutationFuzzer
 from pprint import pprint
 import sqlite3
 
+
 db = sqlite3.connect("./orders.db")
 
 def cgi_encode(s: str, do_not_encode: str = "") -> str:
@@ -295,18 +296,12 @@ class SQLInjectionFuzzer(WebFormFuzzer):
         grammar_miner = self.sql_injection_grammar_miner_class(
             html_text, sql_payload=self.sql_payload)
         return grammar_miner.mine_grammar()
-
+"""
 order_fuzzer = GrammarFuzzer(ORDER_GRAMMAR)
 #print([order_fuzzer.fuzz() for i in range(5)])
 
 httpd_url = "http://127.0.0.1:8800"
 joined_url = urljoin(httpd_url, "/order?foo=bar")
-"""
-for i in range(5):
-    resp = requests.get(urljoin(httpd_url, order_fuzzer.fuzz()))
-    print(resp.status_code)
-    print(resp.content)
-"""
 
 seed = order_fuzzer.fuzz()
 print(seed)
@@ -345,10 +340,12 @@ pprint(web_form_fuzzer.fuzz())
 web_form_runner = WebRunner(httpd_url)
 pprint(web_form_fuzzer.runs(web_form_runner, 10))
 print("")
+"""
 
-for url in crawl(httpd_url):
+crawlUrl = "https://0a7f008503f5d437c0150e4000770007.web-security-academy.net/"
+for url in crawl(crawlUrl):
     pprint(url)
-
+"""
 #Automated web attacks
 
 html_miner = SQLInjectionGrammarMiner(str(http_text), sql_payload="DROP TABLE orders")
@@ -371,3 +368,5 @@ while True:
 
 pprint(trials)
 pprint(orders_db_is_empty())
+"""
+
